@@ -55,6 +55,9 @@ const totalCost = document.createElement("P");
 totalCost.innerText = "Total Cost";
 $(".activities").append(totalCost);
 
+$(".activities").on('change', function () { //
 
+    console.log("helpme");
+});
 
 
