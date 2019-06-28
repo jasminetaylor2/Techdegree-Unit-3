@@ -51,13 +51,21 @@ $("select[name=user_design").change(function () {         //calls the select ele
 });
 // Activity Section
 
-const totalCost = document.createElement("P");
-totalCost.innerText = "Total Cost";
-$(".activities").append(totalCost);
+const totalCostTag = document.createElement("P");
+totalCostTag.innerText = "Total Cost";
+$(".activities").append(totalCostTag);
 
-$(".activities").on('change', function () { //
-
-    console.log("helpme");
+$(".activities").on('change', function () {
+    let totalCost = 0;
+    //$("input[type=checkbox][name=all]").prop("checked")  use to varify check prop
+    if ($("input[type=checkbox][name=all]").prop("checked")) {
+        totalCost += 200
+        console.log("box checked");
+    } else { console.log("no"); }
+    totalCostTag.innerText = "Total Cost $" + totalCost;
 });
+const $all = 200;
+const $jsframeworks = 100;
+const $jsLibs = 100;
 
 
