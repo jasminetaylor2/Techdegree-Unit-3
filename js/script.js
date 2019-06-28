@@ -54,9 +54,10 @@ $("select[name=user_design").change(function () {         //calls the select ele
 const totalCostTag = document.createElement("P");
 totalCostTag.innerText = "Total Cost";
 $(".activities").append(totalCostTag);
+let totalCost = 0;
 
 $(".activities").on('change', function () {
-    let totalCost = 0;
+    totalCost = 0;
     if ($("input[type=checkbox][name=all]").prop("checked")) {
         totalCost += 200
         //console.log("box checked");
@@ -70,21 +71,21 @@ $(".activities").on('change', function () {
 
     if ($("input[type=checkbox][name=js-libs]").prop("checked")) {
         $("input[type=checkbox][name=node]").prop({ disabled: true, checked: false })
-       // alert("Node.js Workshop is not available if you select this Activity").hide();
+        // alert("Node.js Workshop is not available if you select this Activity").hide();
         totalCost += 100
     } else {
         $("input[type=checkbox][name=node]").prop({ disabled: false })
-           }
+    }
 
     if ($("input[type=checkbox][name=express]").prop("checked")) {
         $("input[type=checkbox][name=js-frameworks]").prop({ disabled: true, checked: false })
-      //  alert("The JavaScript Frameworks Workshop is not available if you select this Activity").hide();
+        //  alert("The JavaScript Frameworks Workshop is not available if you select this Activity").hide();
         totalCost += 100
     } else { $("input[type=checkbox][name=js-frameworks]").prop({ disabled: false }) }
 
     if ($("input[type=checkbox][name=node]").prop("checked")) {
         $("input[type=checkbox][name=js-libs]").prop({ disabled: true, checked: false })
-    //    alert("The JavaScript Library is not available if you select this Activity").hide();
+        //    alert("The JavaScript Library is not available if you select this Activity").hide();
         totalCost += 100
     } else { $("input[type=checkbox][name=js-libs]").prop({ disabled: false }) }
 
@@ -101,23 +102,37 @@ $(".activities").on('change', function () {
 $("#payment").val($("#payment option:nth-child(2)").val());         //make credit-card default value
 
 $("body > div > form > fieldset:nth-child(4) > div:nth-child(5)").hide(); //hide paypal info
-$("select#payment").on('click', function () { 
+$("body > div > form > fieldset:nth-child(4) > div:nth-child(6)").hide(); //hide bitcoin info
+$("select#payment").on('click', function () {
     if (this.value == "paypal") {
-        $("body > div > form > fieldset:nth-child(4) > div:nth-child(5)").show();
+        $("body > div > form > fieldset:nth-child(4) > div:nth-child(5)").show(); //paypal
+        $("#credit-card").hide();
     } else { $("body > div > form > fieldset:nth-child(4) > div:nth-child(5)").hide(); }
 
     if (this.value == "bitcoin") {
-       $("body > div > form > fieldset:nth-child(4) > div:nth-child(6)").show();
-   } else { $("body > div > form > fieldset:nth-child(4) > div:nth-child(6)").hide(); }
-    // if (this.value == "select_method") {
-    //     $("#payment").css({ border: "3px solid red" });
-    // } else { $("#payment > option:nth-child(1)").hide(); }
+        $("body > div > form > fieldset:nth-child(4) > div:nth-child(6)").show();
+        $("#credit-card").hide();
+    } else { $("body > div > form > fieldset:nth-child(4) > div:nth-child(6)").hide(); }     //hide bitcoin info
+
+    if (this.value == "credit card") {
+        $("#credit-card").show();
+        // $("#payment").css({ border: "3px solid red" });
+    }
 });
- $("body > div > form > fieldset:nth-child(4) > div:nth-child(6)").hide(); //hide bitcoin info
-// $("select#payment").on('click', function () {
-//     if (this.value == "bitcoin") {
-//         $("body > div > form > fieldset:nth-child(4) > div:nth-child(6)").show();
-//     } else { $("body > div > form > fieldset:nth-child(4) > div:nth-child(6)").hide(); }
+//  // Validation Section
+$("#name").focusout(function () {
+    const $nameField = $("#name").val();  // /^[a-zA-Z]*$/;
+    if ($nameField == '') {
+        alert("Must be filled out");
+    }
+});
+//if you specify type=email you do not need validator
 
-// });
 
+$("form").submit(function (event) {
+    if (totalCost === 0) {
+        event.preventDefault();
+        alert("Please select an Activity");
+    }
+
+});
