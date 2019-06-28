@@ -23,31 +23,41 @@ $("#color > option:nth-child(1)").before($colorOption); //displays the variable 
 //$("#color").prepend($colorOption).val(0);         //.html hide the options but places text at top. This works but top works better
 $colorOption.css({ backgroundColor: "yellow" });       //this highlight the bg of the text 
 
-
+$("#colors-js-puns" ).hide();
 $("select[name=user_design").change(function () {         //calls the select element that holds thsirt design themes function to
-    $("#color > option").each(function (index, value) {      //selects each child option nested in color id and creates
-        $(this).toggle();                      // function to toggle between hide and show 
-        if (this.value !== " js puns")                          // 
+    //$("#color > option").each(function (index, value) {      //selects each child option nested in color id and creates
+    //$(this).toggle();                      // function to toggle between hide and show 
+    
+    if (this.value == "js puns")                          // 
+    {
+        $("#colors-js-puns").show();
+        $("#color > option:nth-child(2)").show();            //
+        $("#color > option:nth-child(3)").show();            //
+        $("#color > option:nth-child(4)").show();            //
+        $("#color > option:nth-child(5)").hide();
+        $("#color > option:nth-child(6)").hide();
+        $("#color > option:nth-child(7)").hide();
+    } else
+        if (this.value == "heart js")
         {
-            $("#color > option:nth-child(2)").show();            //
-            $("#color > option:nth-child(3)").show();            //
-            $("#color > option:nth-child(4)").show();            //
-        } else
-            if (this.value !== " heart js ") {
-                $("#color > option:nth-child(5)").show();
-                $("#color > option:nth-child(6)").show();
-                $("#color > option:nth-child(7)").show();
-            }                        // $("#colors-js-puns").hide();
+            $("#colors-js-puns").show();
+            $("#color > option:nth-child(2)").hide();            //
+            $("#color > option:nth-child(3)").hide();            //
+            $("#color > option:nth-child(4)").hide();
+            $("#color > option:nth-child(5)").show();
+            $("#color > option:nth-child(6)").show();
+            $("#color > option:nth-child(7)").show();
+        }       //$("#colors-js-puns").hide();
 
-        //this works --not includeing heart js
+    //this works --not includeing heart js
 
-        // if ( this.value !== " heart js ") 
-        // {$("#color > option:nth-child(5)").show();
-        //  $("#color > option:nth-child(6)").show();
-        //  $("#color > option:nth-child(7)").show(); 
-        // } else { $("#colors-js-puns").hide(); }
+    // if ( this.value !== " heart js ") 
+    // {$("#color > option:nth-child(5)").show();
+    //  $("#color > option:nth-child(6)").show();
+    //  $("#color > option:nth-child(7)").show(); 
+    // } else { $("#colors-js-puns").hide(); }
 
-    });
+    //});
 });
 //});
 
@@ -79,4 +89,7 @@ $("select[name=user_design").change(function () {         //calls the select ele
 // }
 
 // });    
+
+
+
 
