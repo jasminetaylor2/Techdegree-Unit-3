@@ -23,28 +23,37 @@ $("select#title").on('click', function () {     // displays the hidden  input fi
  //$("#color").prepend($colorOption).val(0);         //.html hide the options but places text at top. This works but top works better
 $colorOption.css({backgroundColor: "yellow"});       //this highlight the bg of the text 
 
-$("#colors-js-puns").toggle();
 
-
- $("select[name=user_design").change(function(){
-
- if ($('select[name=user_design] option:selected').val() =='js puns')
-    { $("#div:hidden").show();  }               //("select[value~=cornflowerblue]").show$('div:hidden').show();
-    else { }
-    
-    
-if ($('select[name=user_design] option:selected').val() == 'heart js') {
-        $("#colors-js-puns").show();
-
-}
+$("select[name=user_design").change(function(){
+$("#color > option").each(function (index, value){
+    $(this).toggle(); //"#colors-js-puns"
+if( this.value !== " js puns") 
+{// $(value).attr('cornflowerblue');
+     $("#color > option:nth-child(2)").show();
+   $("#color > option:nth-child(3):hidden").show();
+   $("#color > option:nth-child(4):hidden").show();
+} else {$("#colors-js-puns").hide();}
 
 });
 
 
-// $("#color > option:nth-child(1)").show()
-// $("#color > option:nth-child(2)").show()
-// $("#color > option:nth-child(3)").show()
- 
+});
+
+//this works
+//  $("select[name=user_design").change(function(){
+
+//  if ($('select[name=user_design] option:selected').val() =='js puns')
+//     { $("div:hidden").show();  }               //("select[value~=cornflowerblue]").show$('div:hidden').show();
+//     else { }
+    
+    
+// if ($('select[name=user_design] option:selected').val() == 'heart js') {
+//         $("#colors-js-puns").show();
+
+// }
+
+// });
+
 
 
 
