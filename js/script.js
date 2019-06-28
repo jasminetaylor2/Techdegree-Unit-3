@@ -65,15 +65,17 @@ $(".activities").on('change', function () {
     if ($("input[type=checkbox][name=js-frameworks]").prop("checked")) {
         $("input[type=checkbox][name=express]").prop({ disabled: true, checked: false })
         totalCost += 100;
-    }
+    } else { $("input[type=checkbox][name=express]").prop({ disabled: false }) }
 
     if ($("input[type=checkbox][name=js-libs]").prop("checked")) {
+
         totalCost += 100
     }
 
     if ($("input[type=checkbox][name=express]").prop("checked")) {
+        $("input[type=checkbox][name=js-frameworks]").prop({ disabled: true, checked: false })
         totalCost += 100
-    }
+    } else { $("input[type=checkbox][name=js-frameworks]").prop({ disabled: false }) }
 
     if ($("input[type=checkbox][name=node]").prop("checked")) {
         totalCost += 100
