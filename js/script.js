@@ -64,21 +64,27 @@ $(".activities").on('change', function () {
 
     if ($("input[type=checkbox][name=js-frameworks]").prop("checked")) {
         $("input[type=checkbox][name=express]").prop({ disabled: true, checked: false })
+        alert("The Express Workshop is not available if you select this Activity").hide();
         totalCost += 100;
     } else { $("input[type=checkbox][name=express]").prop({ disabled: false }) }
 
     if ($("input[type=checkbox][name=js-libs]").prop("checked")) {
         $("input[type=checkbox][name=node]").prop({ disabled: true, checked: false })
+        alert("Node.js Workshop is not available if you select this Activity").hide();
         totalCost += 100
-    } else { $("input[type=checkbox][name=node]").prop({ disabled: false }) }
+    } else {
+        $("input[type=checkbox][name=node]").prop({ disabled: false })
+           }
 
     if ($("input[type=checkbox][name=express]").prop("checked")) {
         $("input[type=checkbox][name=js-frameworks]").prop({ disabled: true, checked: false })
+        alert("The JavaScript Frameworks Workshop is not available if you select this Activity").hide();
         totalCost += 100
     } else { $("input[type=checkbox][name=js-frameworks]").prop({ disabled: false }) }
 
     if ($("input[type=checkbox][name=node]").prop("checked")) {
         $("input[type=checkbox][name=js-libs]").prop({ disabled: true, checked: false })
+        alert("The JavaScript Library is not available if you select this Activity").hide();
         totalCost += 100
     } else { $("input[type=checkbox][name=js-libs]").prop({ disabled: false }) }
 
@@ -87,9 +93,9 @@ $(".activities").on('change', function () {
     }
     if ($("input[type=checkbox][name=npm]").prop("checked")) {
         totalCost += 100
-    } else { console.log("no"); }
+    } else { console.log("box is Un-clicked"); }
     totalCostTag.innerText = "Total Cost $" + totalCost;
-});
+}); //it hides the alret but produces an error message in console
 
 
 
