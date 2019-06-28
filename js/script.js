@@ -68,9 +68,9 @@ $(".activities").on('change', function () {
     } else { $("input[type=checkbox][name=express]").prop({ disabled: false }) }
 
     if ($("input[type=checkbox][name=js-libs]").prop("checked")) {
-
+        $("input[type=checkbox][name=node]").prop({ disabled: true, checked: false })
         totalCost += 100
-    }
+    } else { $("input[type=checkbox][name=node]").prop({ disabled: false }) }
 
     if ($("input[type=checkbox][name=express]").prop("checked")) {
         $("input[type=checkbox][name=js-frameworks]").prop({ disabled: true, checked: false })
@@ -78,8 +78,9 @@ $(".activities").on('change', function () {
     } else { $("input[type=checkbox][name=js-frameworks]").prop({ disabled: false }) }
 
     if ($("input[type=checkbox][name=node]").prop("checked")) {
+        $("input[type=checkbox][name=js-libs]").prop({ disabled: true, checked: false })
         totalCost += 100
-    }
+    } else { $("input[type=checkbox][name=js-libs]").prop({ disabled: false }) }
 
     if ($("input[type=checkbox][name=build-tools]").prop("checked")) {
         totalCost += 100
