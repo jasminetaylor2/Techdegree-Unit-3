@@ -64,13 +64,13 @@ $(".activities").on('change', function () {
 
     if ($("input[type=checkbox][name=js-frameworks]").prop("checked")) {
         $("input[type=checkbox][name=express]").prop({ disabled: true, checked: false })
-        alert("The Express Workshop is not available if you select this Activity").hide();
         totalCost += 100;
+        //alert("The Express Workshop is not available if you select this Activity");
     } else { $("input[type=checkbox][name=express]").prop({ disabled: false }) }
 
     if ($("input[type=checkbox][name=js-libs]").prop("checked")) {
         $("input[type=checkbox][name=node]").prop({ disabled: true, checked: false })
-        alert("Node.js Workshop is not available if you select this Activity").hide();
+       // alert("Node.js Workshop is not available if you select this Activity").hide();
         totalCost += 100
     } else {
         $("input[type=checkbox][name=node]").prop({ disabled: false })
@@ -78,13 +78,13 @@ $(".activities").on('change', function () {
 
     if ($("input[type=checkbox][name=express]").prop("checked")) {
         $("input[type=checkbox][name=js-frameworks]").prop({ disabled: true, checked: false })
-        alert("The JavaScript Frameworks Workshop is not available if you select this Activity").hide();
+      //  alert("The JavaScript Frameworks Workshop is not available if you select this Activity").hide();
         totalCost += 100
     } else { $("input[type=checkbox][name=js-frameworks]").prop({ disabled: false }) }
 
     if ($("input[type=checkbox][name=node]").prop("checked")) {
         $("input[type=checkbox][name=js-libs]").prop({ disabled: true, checked: false })
-        alert("The JavaScript Library is not available if you select this Activity").hide();
+    //    alert("The JavaScript Library is not available if you select this Activity").hide();
         totalCost += 100
     } else { $("input[type=checkbox][name=js-libs]").prop({ disabled: false }) }
 
@@ -95,7 +95,29 @@ $(".activities").on('change', function () {
         totalCost += 100
     } else { console.log("box is Un-clicked"); }
     totalCostTag.innerText = "Total Cost $" + totalCost;
-}); //it hides the alret but produces an error message in console
+}); //these are not dynaic they go with the element
 
+//Payment Section
+$("#payment").val($("#payment option:nth-child(2)").val());         //make credit-card default value
 
+$("body > div > form > fieldset:nth-child(4) > div:nth-child(5)").hide(); //hide paypal info
+$("select#payment").on('click', function () { 
+    if (this.value == "paypal") {
+        $("body > div > form > fieldset:nth-child(4) > div:nth-child(5)").show();
+    } else { $("body > div > form > fieldset:nth-child(4) > div:nth-child(5)").hide(); }
+
+    if (this.value == "bitcoin") {
+       $("body > div > form > fieldset:nth-child(4) > div:nth-child(6)").show();
+   } else { $("body > div > form > fieldset:nth-child(4) > div:nth-child(6)").hide(); }
+    // if (this.value == "select_method") {
+    //     $("#payment").css({ border: "3px solid red" });
+    // } else { $("#payment > option:nth-child(1)").hide(); }
+});
+ $("body > div > form > fieldset:nth-child(4) > div:nth-child(6)").hide(); //hide bitcoin info
+// $("select#payment").on('click', function () {
+//     if (this.value == "bitcoin") {
+//         $("body > div > form > fieldset:nth-child(4) > div:nth-child(6)").show();
+//     } else { $("body > div > form > fieldset:nth-child(4) > div:nth-child(6)").hide(); }
+
+// });
 
