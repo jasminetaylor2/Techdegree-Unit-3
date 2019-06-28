@@ -57,15 +57,36 @@ $(".activities").append(totalCostTag);
 
 $(".activities").on('change', function () {
     let totalCost = 0;
-    //$("input[type=checkbox][name=all]").prop("checked")  use to varify check prop
     if ($("input[type=checkbox][name=all]").prop("checked")) {
         totalCost += 200
-        console.log("box checked");
+        //console.log("box checked");
+    }
+    else if ($("input[type=checkbox][name=js-frameworks]").prop("checked")) {
+        totalCost += 100
+
+    }
+    else if ($("input[type=checkbox][name=js-libs]").prop("checked")) {
+        totalCost += 100
+
+    }
+    else if ($("input[type=checkbox][name=express]").prop("checked")) {
+        totalCost += 100
+
+    }
+    else if ($("input[type=checkbox][name=node]").prop("checked")) {
+        totalCost += 100
+
+    }
+    else if ($("input[type=checkbox][name=build-tools]").prop("checked")) {
+        totalCost += 100
+
+    }
+    else if ($("input[type=checkbox][name=npm]").prop("checked")) {
+        totalCost += 100
+
     } else { console.log("no"); }
     totalCostTag.innerText = "Total Cost $" + totalCost;
 });
-const $all = 200;
-const $jsframeworks = 100;
-const $jsLibs = 100;
+
 
 
