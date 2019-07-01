@@ -121,8 +121,8 @@ $("select#payment").on('click', function () {
     }
 });
 //  // Validation Section
-$("#name").focusout(function () {
-    const $nameField = $("#name").val();  // /^[a-zA-Z]*$/;
+$("#name").focusout(function () {                                                   //Sends an alert if focus is moved from name field without being 
+    const $nameField = $("#name").val();  // /^[a-zA-Z]*$/;                            //filled out
     if ($nameField == '') {
         alert("Oops! Name field cannot be left empty!");
     }
@@ -130,32 +130,31 @@ $("#name").focusout(function () {
 //if you specify type=email you do not need validator
 
 
-$("form").submit(function (event) {
+$("form").submit(function (event) {                                             //If the total cost field didnt update then no activities were selected
     if (totalCost === 0) {
-        event.preventDefault();
+        event.preventDefault();                                                 //prevents default page reload when error found
         alert("Please select an Activity");
     }
     const $ccNumber = $("#cc-num").val();
-    const $zip = $("#zip").val();
-    const $cvv = $("#cvv").val();
-    if ($("select#payment").val() == "credit card" && $ccNumber == '' && $zip == /[^\d](\d{ 5})[^\d]/ && $cvv == /[^\d](\d{3})?$/) {
+    if ($("select#payment").val() == "credit card" && $ccNumber == '') {
         event.preventDefault();
         alert("Oops! Looks like you forgot to enter a Credit Card Number!");
         $("#cc-num").css({ border: "3px solid red" });
-    }
+    } else { $("#form").submit(); }
 
-    // const $zip = $("#zip").val();
-    // if ($("select#payment").val() == "credit card" && $zip == /^(\d{5})?$/ ) {
-    //     event.preventDefault();
-    //     alert("Oops! Please check your zip code is entered correctly")
-    // }
+    const $zip = $("#zip").val();
+    if ($("select#payment").val() == "credit card" && $zip == '') {  ///\^d{5}$ / [^\d](\d{5})[^\d]
+        event.preventDefault();
+        alert("Oops! Please check your zip code is entered correctly");
+        $("#zip").css({ border: "3px solid red" });
+    } else { $("#form").submit(); }
 
-    // const $cvv = $("#cvv").val();
-    // if ($("select#payment").val() == "credit card" && $cvv == /^(\d{3})?$/) {
-    // event.preventDefault();
-    // alert("Oops! Please check Credit Card security code entered Correctly");
-    // $("#cvv").css({ border: "3px solid red" });
+    const $cvv = $("#cvv").val();
+    if ($("select#payment").val() == "credit card" && $cvv == '') { ///^(\d{3})$/
+    event.preventDefault();
+    alert("Oops! Please check Credit Card security code entered Correctly");
+    $("#cvv").css({ border: "3px solid red" });
         
-    // }
+    } else { $("#form").submit(); }
 
 });
