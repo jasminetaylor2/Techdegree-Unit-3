@@ -117,15 +117,17 @@ $("select#payment").on('click', function () {
 
     if (this.value == "credit card") {
         $("#credit-card").show();
-        // $("#payment").css({ border: "3px solid red" });
+       
     }
 });
 //  // Validation Section
 $("#name").focusout(function () {                                                   //Sends an alert if focus is moved from name field without being 
     const $nameField = $("#name").val();  // /^[a-zA-Z]*$/;                            //filled out
+    //const $nameError = $('<input name="user_name">Oops! Name field cannot be left empty!</input>');
     if ($nameField == '') {
-        alert("Oops! Name field cannot be left empty!");
-    }
+        $("#name").html('<input name="user_name">Oops! Name field cannot be left empty!</input>');                                                                           //( "Oops! Name field cannot be left empty!" );
+        $("#name").css({ border: "3px solid red" });                                 //shows a red border when form validation finds error
+    } else { $("#name").css({ border: "none" }); }
 });
 //if you specify type=email you do not need validator
 
@@ -134,27 +136,41 @@ $("form").submit(function (event) {                                             
     if (totalCost === 0) {
         event.preventDefault();                                                 //prevents default page reload when error found
         alert("Please select an Activity");
-    }
+        $("body > div > form > fieldset.activities").css({ border: "3px solid red" });   //shows a red border when form validation finds error
+    } else { $("body > div > form > fieldset.activities").css({ border: "none" }); }
+    
     const $ccNumber = $("#cc-num").val();
-    if ($("select#payment").val() == "credit card" && $ccNumber == '') {
+    if ($("select#payment").val() == "credit card" && $ccNumber == "") {        //"\d{ 4 } -?\d{ 4 } -?\d{ 4 } -?\d{ 4}" regex
         event.preventDefault();
-        alert("Oops! Looks like you forgot to enter a Credit Card Number!");
-        $("#cc-num").css({ border: "3px solid red" });
-    } else { $("#form").submit(); }
+                                                                            //  $("#cc-num").val("Oops! Looks like you forgot to enter a Credit Card Number!");
+        $("#cc-num").css({ border: "3px solid red" });                       //shows a red border when form validation finds error
+    } else {
+        $("#cc-num").css({ border: "none" });
+        $("#form").submit();
+    }
 
     const $zip = $("#zip").val();
-    if ($("select#payment").val() == "credit card" && $zip == '') {  ///\^d{5}$ / [^\d](\d{5})[^\d]
+    if ($("select#payment").val() == "credit card" && $zip == "") {              ///\^d{5}$ / [^\d](\d{5})[^\d]
         event.preventDefault();
-        alert("Oops! Please check your zip code is entered correctly");
-        $("#zip").css({ border: "3px solid red" });
-    } else { $("#form").submit(); }
+       // alert("Oops! Please check your zip code is entered correctly");
+        $("#zip").css({ border: "3px solid red" });                                  //shows a red border when form validation finds error
+    } else {
+        $("#zip").css({ border: "none" });
+        $("#form").submit();
+    }
 
     const $cvv = $("#cvv").val();
-    if ($("select#payment").val() == "credit card" && $cvv == '') { ///^(\d{3})$/
+    if ($("select#payment").val() == "credit card" && $cvv == "") {                 ///^(\d{3})$/
     event.preventDefault();
-    alert("Oops! Please check Credit Card security code entered Correctly");
-    $("#cvv").css({ border: "3px solid red" });
+       // $("#cvv").html("<label>Oops! Please check Credit Card security code entered Correctly</label>");
+        $("#cvv").css({ border: "3px solid red" });                              //shows a red border when form validation finds error
         
-    } else { $("#form").submit(); }
-
+    } else {
+        $("#cvv").css({ border: "none" });
+        $("#form").submit();
+    }
+    if ($("#mail").val() == '') {
+        event.preventDefault();
+        $("#mail").css({ border: "3px solid red" });                        //shows a red border when form validation finds error
+    } else { $("#mail").css({ border: "none" }); }
 });
