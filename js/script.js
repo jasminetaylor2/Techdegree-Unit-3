@@ -103,6 +103,7 @@ $("#payment").val($("#payment option:nth-child(2)").val());         //make credi
 
 $("body > div > form > fieldset:nth-child(4) > div:nth-child(5)").hide(); //hide paypal info
 $("body > div > form > fieldset:nth-child(4) > div:nth-child(6)").hide(); //hide bitcoin info
+
 $("select#payment").on('click', function () {
     if (this.value == "paypal") {
         $("body > div > form > fieldset:nth-child(4) > div:nth-child(5)").show(); //paypal
@@ -123,7 +124,7 @@ $("select#payment").on('click', function () {
 $("#name").focusout(function () {
     const $nameField = $("#name").val();  // /^[a-zA-Z]*$/;
     if ($nameField == '') {
-        alert("Must be filled out");
+        alert("Oops! Name field cannot be left empty!");
     }
 });
 //if you specify type=email you do not need validator
@@ -134,5 +135,27 @@ $("form").submit(function (event) {
         event.preventDefault();
         alert("Please select an Activity");
     }
+    const $ccNumber = $("#cc-num").val();
+    const $zip = $("#zip").val();
+    const $cvv = $("#cvv").val();
+    if ($("select#payment").val() == "credit card" && $ccNumber == '' && $zip == /[^\d](\d{ 5})[^\d]/ && $cvv == /[^\d](\d{3})?$/) {
+        event.preventDefault();
+        alert("Oops! Looks like you forgot to enter a Credit Card Number!");
+        $("#cc-num").css({ border: "3px solid red" });
+    }
+
+    // const $zip = $("#zip").val();
+    // if ($("select#payment").val() == "credit card" && $zip == /^(\d{5})?$/ ) {
+    //     event.preventDefault();
+    //     alert("Oops! Please check your zip code is entered correctly")
+    // }
+
+    // const $cvv = $("#cvv").val();
+    // if ($("select#payment").val() == "credit card" && $cvv == /^(\d{3})?$/) {
+    // event.preventDefault();
+    // alert("Oops! Please check Credit Card security code entered Correctly");
+    // $("#cvv").css({ border: "3px solid red" });
+        
+    // }
 
 });
