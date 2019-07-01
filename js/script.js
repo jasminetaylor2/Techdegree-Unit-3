@@ -125,7 +125,7 @@ $("#name").focusout(function () {                                               
     const $nameField = $("#name").val();  // /^[a-zA-Z]*$/;                            //filled out
     //const $nameError = $('<input name="user_name">Oops! Name field cannot be left empty!</input>');
     if ($nameField == '') {
-        $("#name").html('<input name="user_name">Oops! Name field cannot be left empty!</input>');                                                                           //( "Oops! Name field cannot be left empty!" );
+                                                                                    // $("#name").html('<input name="user_name">Oops! Name field cannot be left empty!</input>');                                                                           //( "Oops! Name field cannot be left empty!" );
         $("#name").css({ border: "3px solid red" });                                 //shows a red border when form validation finds error
     } else { $("#name").css({ border: "none" }); }
 });
@@ -171,6 +171,6 @@ $("form").submit(function (event) {                                             
     }
     if ($("#mail").val() == '') {
         event.preventDefault();
-        $("#mail").css({ border: "3px solid red" });                        //shows a red border when form validation finds error
+        $("#mail").css({ border: "3px solid red" });                        //shows a red border when form validation finds error on email input field
     } else { $("#mail").css({ border: "none" }); }
 });
