@@ -172,5 +172,8 @@ $("form").submit(function (event) {                                             
     if ($("#mail").val() == '') {
         event.preventDefault();
         $("#mail").css({ border: "3px solid red" });                        //shows a red border when form validation finds error on email input field
-    } else { $("#mail").css({ border: "none" }); }
+    } else {
+        $("#form").submit();
+        $("#mail").css({ border: "none" });
+    }
 });
